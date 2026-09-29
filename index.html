@@ -1,0 +1,1258 @@
+<!DOCTYPE html>
+<html lang="en" class="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AuditTrace-IN | Precedent-Governed Statutory AP Copilot</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Chart.js CDN -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <!-- Google Fonts: JetBrains Mono & Inter -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <!-- FontAwesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        obsidian: '#030712',
+                        slate: {
+                            950: '#0b1329',
+                            900: '#0f172a',
+                            850: '#131e36',
+                            800: '#1e293b',
+                            700: '#334155'
+                        },
+                        cyan: { 400: '#22d3ee', 500: '#06b6d4', 600: '#0891b2' },
+                        emerald: { 400: '#34d399', 500: '#10b981', 600: '#059669' },
+                        amber: { 400: '#fbbf24', 500: '#f59e0b' },
+                        rose: { 500: '#f43f5e', 600: '#e11d48' },
+                        violet: { 500: '#8b5cf6', 600: '#7c3aed' }
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                        mono: ['JetBrains Mono', 'monospace']
+                    }
+                }
+            }
+        }
+    </script>
+    
+    <style>
+        body {
+            background-color: #030712;
+            color: #f8fafc;
+            font-family: 'Inter', sans-serif;
+            background-image: 
+                radial-gradient(at 0% 0%, rgba(6, 182, 212, 0.08) 0px, transparent 50%),
+                radial-gradient(at 100% 0%, rgba(139, 92, 246, 0.08) 0px, transparent 50%),
+                radial-gradient(at 50% 100%, rgba(16, 185, 129, 0.06) 0px, transparent 50%);
+            background-attachment: fixed;
+        }
+        .font-mono { font-family: 'JetBrains Mono', monospace; }
+        
+        .glass-panel {
+            background: rgba(11, 19, 41, 0.75);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            box-shadow: 0 20px 50px -10px rgba(0, 0, 0, 0.6);
+        }
+        .glass-panel-interactive {
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        .glass-panel-interactive:hover {
+            border-color: rgba(6, 182, 212, 0.4);
+            transform: translateY(-3px);
+            box-shadow: 0 25px 60px -12px rgba(6, 182, 212, 0.2);
+        }
+        
+        .glow-cyan { box-shadow: 0 0 25px rgba(6, 182, 212, 0.4); }
+        .glow-emerald { box-shadow: 0 0 25px rgba(16, 185, 129, 0.4); }
+        .glow-amber { box-shadow: 0 0 30px rgba(245, 158, 11, 0.5); }
+        .glow-rose { box-shadow: 0 0 25px rgba(244, 63, 94, 0.4); }
+        
+        .pulse-indicator { animation: pulse-glow 2s infinite; }
+        @keyframes pulse-glow {
+            0%, 100% { opacity: 1; transform: scale(1); }
+            50% { opacity: 0.5; transform: scale(0.92); }
+        }
+
+        /* Explosive Precedent Increment Animation */
+        .counter-bump {
+            animation: bump-glow 0.8s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+        @keyframes bump-glow {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.4); color: #fbbf24; text-shadow: 0 0 20px rgba(251, 191, 36, 0.8); }
+            100% { transform: scale(1); }
+        }
+
+        /* Screen Flash Explosion Effect */
+        .flash-explosion {
+            animation: flash-overlay 0.6s ease-out;
+        }
+        @keyframes flash-overlay {
+            0% { opacity: 0.8; background: rgba(245, 158, 11, 0.25); }
+            100% { opacity: 0; background: transparent; }
+        }
+
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar { width: 6px; height: 6px; }
+        ::-webkit-scrollbar-track { background: #030712; }
+        ::-webkit-scrollbar-thumb { background: #1e293b; border-radius: 4px; }
+        ::-webkit-scrollbar-thumb:hover { background: #334155; }
+    </style>
+</head>
+<body class="min-h-screen flex flex-col antialiased selection:bg-cyan-500 selection:text-slate-950 relative">
+
+    <!-- Screen Flash Overlay for Explosive Retain Loop -->
+    <div id="flash-overlay-el" class="fixed inset-0 pointer-events-none z-50 hidden"></div>
+
+    <!-- Top Real-Time Telemetry Ticker Ribbon -->
+    <div class="bg-slate-950 border-b border-slate-800/80 px-4 py-1.5 text-[11px] font-mono flex items-center justify-between text-slate-400 overflow-hidden">
+        <div class="flex items-center space-x-6 animate-pulse">
+            <span class="flex items-center gap-1.5 text-cyan-400">
+                <i class="fa-solid fa-cloud-bolt text-[10px]"></i>
+                <span>ENTERPRISE VECTOR MEMORY ENGINE: ACTIVE (PRECEDENT VAULT)</span>
+            </span>
+            <span class="hidden md:inline text-slate-600">•</span>
+            <span class="hidden md:flex items-center gap-1.5 text-emerald-400">
+                <i class="fa-solid fa-microchip text-[10px]"></i>
+                <span>STATUTORY AI: SEC 194Q (0.1% TDS) & SEC 43B(h) MSME (45-DAY) ACTIVE</span>
+            </span>
+            <span class="hidden lg:inline text-slate-600">•</span>
+            <span class="hidden lg:flex items-center gap-1.5 text-amber-400">
+                <i class="fa-solid fa-building-columns text-[10px]"></i>
+                <span>CBDT CIRCULAR 715 & FORM 13 ENFORCED</span>
+            </span>
+        </div>
+        <div class="flex items-center space-x-4">
+            <button onclick="toggleAudio()" id="audio-toggle-btn" class="hover:text-cyan-400 transition-colors flex items-center gap-1">
+                <i class="fa-solid fa-volume-high" id="audio-icon"></i>
+                <span id="audio-text">Audio FX: ON</span>
+            </button>
+            <span class="text-slate-600">|</span>
+            <span class="text-slate-400">Press <kbd class="px-1.5 py-0.5 bg-slate-800 rounded border border-slate-700 text-cyan-400">Ctrl + K</kbd> to Search</span>
+        </div>
+    </div>
+
+    <!-- Top Command Header -->
+    <header class="sticky top-0 z-40 glass-panel border-b border-slate-800/80 bg-obsidian/80">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
+            <!-- Brand Logo & Title -->
+            <div class="flex items-center space-x-4">
+                <div class="w-12 h-12 rounded-2xl bg-gradient-to-br from-cyan-400 via-indigo-500 to-emerald-400 p-0.5 glow-cyan flex items-center justify-center">
+                    <div class="w-full h-full bg-obsidian rounded-[14px] flex items-center justify-center">
+                        <i class="fa-solid fa-shield-halved text-cyan-400 text-xl"></i>
+                    </div>
+                </div>
+                <div>
+                    <div class="flex items-center space-x-2">
+                        <h1 class="text-2xl font-black tracking-tight text-white font-mono">
+                            AuditTrace<span class="text-cyan-400">-IN</span>
+                        </h1>
+                        <span class="px-2.5 py-0.5 text-[10px] font-bold font-mono rounded-full bg-gradient-to-r from-cyan-950 to-indigo-950 text-cyan-400 border border-cyan-800/80">
+                            v3.0 COPILOT
+                        </span>
+                    </div>
+                    <p class="text-xs text-slate-400 flex items-center gap-2 mt-0.5">
+                        <span>Precedent-Governed Statutory AP Copilot</span>
+                        <span class="text-slate-600">•</span>
+                        <span class="text-emerald-400 font-mono font-semibold">Statutory AI Neural Matrix + Precedent Memory Vault</span>
+                    </p>
+                </div>
+            </div>
+
+            <!-- Header Action Controls -->
+            <div class="flex items-center space-x-3">
+                <button onclick="runAutonomousBatchScan()" id="batch-scan-btn"
+                        class="px-4 py-2.5 rounded-xl bg-gradient-to-r from-cyan-600 via-indigo-600 to-emerald-600 hover:from-cyan-500 hover:to-emerald-500 text-white font-bold text-xs font-mono uppercase tracking-wider shadow-lg hover:shadow-cyan-500/20 transition-all flex items-center gap-2">
+                    <i class="fa-solid fa-radar text-sm"></i>
+                    <span>Run Autonomous Batch Scan</span>
+                </button>
+
+                <button onclick="openSimulationModal()"
+                        class="px-4 py-2.5 rounded-xl bg-slate-900 hover:bg-slate-800 text-cyan-400 border border-cyan-800/80 font-bold text-xs font-mono transition-all flex items-center gap-2">
+                    <i class="fa-solid fa-flask"></i>
+                    <span class="hidden sm:inline">Live Simulator</span>
+                </button>
+
+                <button onclick="openPrecedentMapModal()"
+                        class="px-3.5 py-2.5 rounded-xl bg-slate-900 hover:bg-slate-800 text-indigo-400 border border-indigo-800/80 font-bold text-xs font-mono transition-all flex items-center gap-2">
+                    <i class="fa-solid fa-diagram-project"></i>
+                    <span class="hidden md:inline">Precedent Map</span>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content Layout -->
+    <main class="flex-grow max-w-7xl w-full mx-auto px-4 sm:px-6 lg:px-8 py-8 space-y-8">
+
+        <!-- Top Metrics Grid (4 Glassmorphism KPI Cards) -->
+        <section class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5" id="metrics-grid">
+            <!-- Card 1: False Alarms Prevented -->
+            <div class="glass-panel p-5 rounded-2xl relative overflow-hidden group hover:border-emerald-500/50 transition-all glass-panel-interactive">
+                <div class="absolute -right-4 -bottom-4 w-24 h-24 bg-emerald-500/10 rounded-full blur-2xl group-hover:bg-emerald-500/20 transition-all"></div>
+                <div class="flex items-center justify-between">
+                    <span class="text-xs font-semibold text-slate-400 uppercase tracking-wider">False Alarms Prevented</span>
+                    <div class="w-10 h-10 rounded-xl bg-emerald-950/80 border border-emerald-800/80 flex items-center justify-center text-emerald-400">
+                        <i class="fa-solid fa-shield-check text-lg"></i>
+                    </div>
+                </div>
+                <div class="mt-4">
+                    <div class="text-3xl font-black text-white font-mono" id="metric-false-alarms">94.8%</div>
+                    <div class="mt-1 flex items-center text-xs text-emerald-400 font-medium">
+                        <i class="fa-solid fa-arrow-trend-up mr-1.5"></i>
+                        <span>+18.6% vs Legacy Manual Audit</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Card 2: Active Statutory Shields -->
+            <div class="glass-panel p-5 rounded-2xl relative overflow-hidden group hover:border-cyan-500/50 transition-all glass-panel-interactive">
+                <div class="absolute -right-4 -bottom-4 w-24 h-24 bg-cyan-500/10 rounded-full blur-2xl group-hover:bg-cyan-500/20 transition-all"></div>
+                <div class="flex items-center justify-between">
+                    <span class="text-xs font-semibold text-slate-400 uppercase tracking-wider">Active Statutory Shields</span>
+                    <div class="w-10 h-10 rounded-xl bg-cyan-950/80 border border-cyan-800/80 flex items-center justify-center text-cyan-400">
+                        <i class="fa-solid fa-gavel text-lg"></i>
+                    </div>
+                </div>
+                <div class="mt-4">
+                    <div class="text-2xl font-black text-white font-mono" id="metric-active-shields">Sec 194Q & 43B(h)</div>
+                    <div class="mt-1 flex items-center text-xs text-slate-400 font-medium">
+                        <span class="w-2 h-2 rounded-full bg-cyan-400 mr-1.5 pulse-indicator"></span>
+                        <span>GSTIN Drift & Form 13 Active</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Card 3: Total Ledger Value -->
+            <div class="glass-panel p-5 rounded-2xl relative overflow-hidden group hover:border-indigo-500/50 transition-all glass-panel-interactive">
+                <div class="absolute -right-4 -bottom-4 w-24 h-24 bg-indigo-500/10 rounded-full blur-2xl group-hover:bg-indigo-500/20 transition-all"></div>
+                <div class="flex items-center justify-between">
+                    <span class="text-xs font-semibold text-slate-400 uppercase tracking-wider">Total Ledger Value</span>
+                    <div class="w-10 h-10 rounded-xl bg-indigo-950/80 border border-indigo-800/80 flex items-center justify-center text-indigo-400">
+                        <i class="fa-solid fa-indian-rupee-sign text-lg"></i>
+                    </div>
+                </div>
+                <div class="mt-4">
+                    <div class="text-3xl font-black text-white font-mono" id="metric-ledger-val">₹24.85 Crores</div>
+                    <div class="mt-1 flex items-center text-xs text-indigo-400 font-mono">
+                        <i class="fa-solid fa-piggy-bank mr-1"></i>
+                        <span id="metric-tax-savings">₹4.82 Cr Tax Savings Prevented</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Card 4: Active Precedents (DYNAMICALLY INCREMENTS IN RETAIN LOOP) -->
+            <div class="glass-panel p-5 rounded-2xl relative overflow-hidden group hover:border-amber-500/50 transition-all glass-panel-interactive border-amber-500/30">
+                <div class="absolute -right-4 -bottom-4 w-24 h-24 bg-amber-500/10 rounded-full blur-2xl group-hover:bg-amber-500/20 transition-all"></div>
+                <div class="flex items-center justify-between">
+                    <span class="text-xs font-semibold text-slate-400 uppercase tracking-wider">Active Precedents</span>
+                    <div class="w-10 h-10 rounded-xl bg-amber-950/80 border border-amber-800/80 flex items-center justify-center text-amber-400">
+                        <i class="fa-solid fa-brain text-lg"></i>
+                    </div>
+                </div>
+                <div class="mt-4">
+                    <div class="text-3xl font-black text-white font-mono transition-all duration-300" id="metric-active-precedents">10 Precedents</div>
+                    <div class="mt-1 flex items-center text-xs text-amber-400 font-medium">
+                        <i class="fa-solid fa-database mr-1.5"></i>
+                        <span>Live Vector Memory Sync</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Interactive Financial Analytics Charts Section -->
+        <section class="grid grid-cols-1 lg:grid-cols-3 gap-6">
+            <div class="lg:col-span-2 glass-panel p-6 rounded-2xl border border-slate-800 space-y-4">
+                <div class="flex items-center justify-between">
+                    <div class="flex items-center space-x-3">
+                        <div class="w-8 h-8 rounded-lg bg-cyan-950 border border-cyan-800 flex items-center justify-center text-cyan-400">
+                            <i class="fa-solid fa-chart-column text-xs"></i>
+                        </div>
+                        <div>
+                            <h3 class="text-sm font-bold text-white font-mono">Quarterly Statutory Exposure & Precedent Auto-Clearing</h3>
+                            <p class="text-xs text-slate-400">Financial distribution across FY 2026 multi-quarter AP ledger</p>
+                        </div>
+                    </div>
+                    <span class="text-xs font-mono text-cyan-400 bg-cyan-950/80 px-2.5 py-1 rounded border border-cyan-800">Q1 - Q3 2026</span>
+                </div>
+                <div class="h-56 relative">
+                    <canvas id="quarterlyChart"></canvas>
+                </div>
+            </div>
+
+            <div class="glass-panel p-6 rounded-2xl border border-slate-800 space-y-4">
+                <div class="flex items-center space-x-3">
+                    <div class="w-8 h-8 rounded-lg bg-emerald-950 border border-emerald-800 flex items-center justify-center text-emerald-400">
+                        <i class="fa-solid fa-pie-chart text-xs"></i>
+                    </div>
+                    <div>
+                        <h3 class="text-sm font-bold text-white font-mono">Ledger Audit State Breakdown</h3>
+                        <p class="text-xs text-slate-400">Raw incoming vs pre-cleared vs alerts</p>
+                    </div>
+                </div>
+                <div class="h-56 relative flex items-center justify-center">
+                    <canvas id="precisionChart"></canvas>
+                </div>
+            </div>
+        </section>
+
+        <!-- Auditor Governance Panel -->
+        <section class="glass-panel p-6 rounded-2xl relative border border-slate-800">
+            <div class="flex flex-col md:flex-row md:items-center justify-between gap-6 border-b border-slate-800/80 pb-5">
+                <div class="flex items-center space-x-3">
+                    <div class="w-10 h-10 rounded-xl bg-cyan-950 border border-cyan-800 flex items-center justify-center text-cyan-400">
+                        <i class="fa-solid fa-sliders text-lg"></i>
+                    </div>
+                    <div>
+                        <h2 class="text-base font-bold text-white flex items-center gap-2">
+                            Auditor Governance & Statutory Threshold Controls
+                        </h2>
+                        <p class="text-xs text-slate-400">Configure Auto-Clear limits and strict MSME 45-day payment enforcement.</p>
+                    </div>
+                </div>
+
+                <button onclick="applyGovernance()" class="px-5 py-2.5 rounded-xl bg-gradient-to-r from-cyan-600 to-indigo-600 hover:from-cyan-500 hover:to-indigo-500 text-white font-bold text-xs tracking-wider uppercase font-mono shadow-lg transition-all flex items-center gap-2">
+                    <i class="fa-solid fa-floppy-disk"></i>
+                    <span>Apply Controls</span>
+                </button>
+            </div>
+
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 mt-6">
+                <div class="space-y-3">
+                    <div class="flex items-center justify-between">
+                        <label class="text-sm font-semibold text-slate-200">Auto-Clear Limit Threshold</label>
+                        <span class="text-base font-extrabold text-cyan-400 font-mono" id="slider-val-display">₹50,00,000 (50L)</span>
+                    </div>
+                    <input type="range" id="governance-slider" min="1000000" max="10000000" step="500000" value="5000000"
+                           class="w-full h-2 bg-slate-800 rounded-lg appearance-none cursor-pointer accent-cyan-400"
+                           oninput="updateSliderDisplay(this.value)">
+                    <div class="flex justify-between text-[11px] text-slate-500 font-mono">
+                        <span>₹10 Lakhs</span>
+                        <span>₹50 Lakhs (Default)</span>
+                        <span>₹1 Crore</span>
+                    </div>
+                </div>
+
+                <div class="flex items-center justify-between p-4 rounded-xl bg-slate-900/80 border border-slate-800">
+                    <div class="space-y-1">
+                        <div class="text-sm font-semibold text-slate-200 flex items-center gap-2">
+                            <i class="fa-solid fa-clock-rotate-left text-amber-400"></i>
+                            <span>Strict Section 43B(h) MSME Enforcement</span>
+                        </div>
+                        <p class="text-xs text-slate-400">Flag payment terms &gt; 45 days for disallowance risk unless pre-approved safe harbor exists.</p>
+                    </div>
+                    <label class="relative inline-flex items-center cursor-pointer">
+                        <input type="checkbox" id="msme-toggle" checked class="sr-only peer">
+                        <div class="w-12 h-6 bg-slate-800 peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-slate-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-cyan-500"></div>
+                    </label>
+                </div>
+            </div>
+        </section>
+
+        <!-- Enterprise AP Ledger Section (35 Multi-Quarter Invoices) -->
+        <section class="glass-panel rounded-2xl overflow-hidden border border-slate-800">
+            <div class="p-6 border-b border-slate-800/80 flex flex-col md:flex-row md:items-center justify-between gap-4">
+                <div>
+                    <h2 class="text-lg font-bold text-white flex items-center gap-3 font-mono">
+                        <span>Enterprise Accounts Payable Ledger</span>
+                        <span class="text-xs px-2.5 py-0.5 rounded-full bg-cyan-950 text-cyan-300 border border-cyan-800 font-sans" id="invoice-count-badge">35 Multi-Quarter Invoices</span>
+                    </h2>
+                    <p class="text-xs text-slate-400 mt-1">Raw incoming vouchers waiting for CA screening & statutory rule cross-examination.</p>
+                </div>
+
+                <div class="flex flex-wrap items-center gap-3">
+                    <div class="flex items-center p-1 rounded-xl bg-slate-900 border border-slate-800 text-xs font-mono">
+                        <button onclick="filterInvoices('ALL')" id="filter-btn-ALL" class="px-3 py-1.5 rounded-lg text-cyan-400 bg-slate-800 font-semibold transition-all">All (35)</button>
+                        <button onclick="filterInvoices('PENDING_SCREENING')" id="filter-btn-PENDING_SCREENING" class="px-3 py-1.5 rounded-lg text-slate-400 hover:text-white transition-all">Unscreened (18)</button>
+                        <button onclick="filterInvoices('AUTO_CLEARED_BY_PRECEDENT')" id="filter-btn-AUTO_CLEARED_BY_PRECEDENT" class="px-3 py-1.5 rounded-lg text-slate-400 hover:text-white transition-all">Cleared (5)</button>
+                        <button onclick="filterInvoices('ESCALATE_TO_CA')" id="filter-btn-ESCALATE_TO_CA" class="px-3 py-1.5 rounded-lg text-slate-400 hover:text-white transition-all">Escalate (4)</button>
+                        <button onclick="filterInvoices('CRITICAL_TAX_ALERT')" id="filter-btn-CRITICAL_TAX_ALERT" class="px-3 py-1.5 rounded-lg text-slate-400 hover:text-white transition-all">Alerts (8)</button>
+                    </div>
+
+                    <div class="relative">
+                        <i class="fa-solid fa-magnifying-glass absolute left-3 top-1/2 -translate-y-1/2 text-slate-500 text-xs"></i>
+                        <input type="text" id="ledger-search" placeholder="Search Vendor / GSTIN (Ctrl+K)..."
+                               onkeyup="handleSearch()"
+                               class="pl-9 pr-4 py-1.5 rounded-xl bg-slate-900 border border-slate-800 text-xs text-white placeholder-slate-500 focus:outline-none focus:border-cyan-500 transition-all font-mono">
+                    </div>
+                </div>
+            </div>
+
+            <div class="overflow-x-auto">
+                <table class="w-full text-left border-collapse">
+                    <thead>
+                        <tr class="bg-slate-950/90 border-b border-slate-800 text-[11px] font-mono uppercase tracking-wider text-slate-400">
+                            <th class="py-4 px-6">Invoice ID & Date</th>
+                            <th class="py-4 px-6">Vendor & Category</th>
+                            <th class="py-4 px-6">GSTIN Validation</th>
+                            <th class="py-4 px-6 text-right">Amount (INR)</th>
+                            <th class="py-4 px-6">Risk & Status</th>
+                            <th class="py-4 px-6 text-center">Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody id="ledger-table-body" class="divide-y divide-slate-800/60 text-sm">
+                        <!-- Rendered dynamically -->
+                    </tbody>
+                </table>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Interactive Dossier Modal (FIXED CUT-OFF LAYOUT) -->
+    <div id="dossier-modal" class="fixed inset-0 z-50 flex items-center justify-center p-4 bg-obsidian/85 backdrop-blur-md hidden opacity-0 transition-opacity duration-300">
+        <div class="glass-panel w-full max-w-4xl h-[88vh] rounded-3xl overflow-hidden flex flex-col border border-slate-700 shadow-2xl">
+            
+            <div class="p-6 bg-slate-900/90 border-b border-slate-800 flex items-center justify-between shrink-0">
+                <div class="flex items-center space-x-3">
+                    <div class="w-10 h-10 rounded-xl bg-cyan-950 border border-cyan-800 flex items-center justify-center text-cyan-400">
+                        <i class="fa-solid fa-file-invoice text-lg"></i>
+                    </div>
+                    <div>
+                        <h3 class="text-lg font-bold text-white flex items-center gap-3 font-mono" id="dossier-modal-title">
+                            Statutory Invoice Dossier Evaluation
+                        </h3>
+                        <p class="text-xs text-slate-400">Real-Time RECALL → Statutory Engine → REFLECT → AI Neural Matrix Synthesis</p>
+                    </div>
+                </div>
+
+                <button onclick="closeDossierModal()" class="w-8 h-8 rounded-lg bg-slate-800 text-slate-400 hover:text-white flex items-center justify-center">
+                    <i class="fa-solid fa-xmark"></i>
+                </button>
+            </div>
+
+            <!-- Scrollable Modal Content (Fixes Cut-off Issue) -->
+            <div class="p-6 overflow-y-auto space-y-6 flex-1 min-h-0" id="dossier-modal-content">
+                <div id="dossier-loader" class="py-16 text-center space-y-4">
+                    <div class="inline-block w-12 h-12 border-4 border-cyan-500/20 border-t-cyan-400 rounded-full animate-spin"></div>
+                    <div class="text-sm font-mono text-cyan-400">Querying Precedent Memory Vault & Executing Statutory Rules Engine...</div>
+                </div>
+
+                <div id="dossier-body" class="hidden space-y-6">
+                    <div class="grid grid-cols-1 md:grid-cols-3 gap-4 p-4 rounded-2xl bg-slate-900/80 border border-slate-800">
+                        <div>
+                            <div class="text-xs text-slate-500 uppercase font-mono">Target Vendor</div>
+                            <div class="text-base font-bold text-white mt-0.5" id="dos-vendor">--</div>
+                        </div>
+                        <div>
+                            <div class="text-xs text-slate-500 uppercase font-mono">Invoice Gross Amount</div>
+                            <div class="text-base font-extrabold text-cyan-400 font-mono mt-0.5" id="dos-amount">--</div>
+                        </div>
+                        <div>
+                            <div class="text-xs text-slate-500 uppercase font-mono">Statutory Verdict</div>
+                            <div class="mt-0.5" id="dos-verdict-badge">--</div>
+                        </div>
+                    </div>
+
+                    <!-- Hindsight 3-Stage Visual Pipeline Breadcrumb Banner -->
+                    <div class="p-3.5 rounded-2xl bg-slate-900/90 border border-slate-800 font-mono text-xs text-center flex flex-wrap items-center justify-center gap-2 sm:gap-4 shadow-lg">
+                        <span class="px-3 py-1.5 rounded-xl bg-cyan-950/90 text-cyan-400 border border-cyan-800/80 font-bold flex items-center gap-1.5">
+                            <i class="fa-solid fa-magnifying-glass-location text-xs"></i> 1. RECALL: Vector Search
+                        </span>
+                        <span class="text-slate-500 font-bold">──&gt;</span>
+                        <span class="px-3 py-1.5 rounded-xl bg-violet-950/90 text-violet-400 border border-violet-800/80 font-bold flex items-center gap-1.5">
+                            <i class="fa-solid fa-gavel text-xs"></i> 2. REFLECT: Statutory Audit
+                        </span>
+                        <span class="text-slate-500 font-bold">──&gt;</span>
+                        <span class="px-3 py-1.5 rounded-xl bg-amber-950/90 text-amber-400 border border-amber-800/80 font-bold flex items-center gap-1.5">
+                            <i class="fa-solid fa-box-archive text-xs"></i> 3. RETAIN: Defense Dossier
+                        </span>
+                    </div>
+
+                    <div class="space-y-3">
+                        <h4 class="text-xs font-mono uppercase tracking-wider text-slate-400 flex items-center gap-2">
+                            <i class="fa-solid fa-microchip text-cyan-400"></i>
+                            <span>Statutory Tax Code Matrix</span>
+                        </h4>
+                        <div class="grid grid-cols-1 md:grid-cols-3 gap-3" id="dos-rules-matrix"></div>
+                    </div>
+
+                    <div class="space-y-3">
+                        <h4 class="text-xs font-mono uppercase tracking-wider text-slate-400 flex items-center gap-2">
+                            <i class="fa-solid fa-brain text-emerald-400"></i>
+                            <span>Pre-Approved CA Precedent Memory Bank</span>
+                        </h4>
+                        <div class="p-4 rounded-2xl bg-emerald-950/20 border border-emerald-800/50 text-xs space-y-2" id="dos-precedents-card"></div>
+                    </div>
+
+                    <!-- AI STATUTORY DEFENSE NOTE & LEGAL CITATION (FULL VISIBILITY, NO CUTOFF) -->
+                    <div class="space-y-3 pb-4">
+                        <div class="flex items-center justify-between">
+                            <h4 class="text-xs font-mono uppercase tracking-wider text-slate-400 flex items-center gap-2">
+                                <i class="fa-solid fa-gavel text-amber-400"></i>
+                                <span>Statutory AI Neural Defense Note & Legal Citation</span>
+                            </h4>
+                            <span class="text-[10px] font-mono px-2.5 py-0.5 rounded bg-slate-800 text-cyan-400 border border-slate-700" id="dos-llm-model">Engine: Statutory Neural Matrix v3.0</span>
+                        </div>
+                        <div class="p-5 rounded-2xl bg-slate-900/90 border border-slate-800 text-xs text-slate-200 leading-relaxed font-sans whitespace-pre-line shadow-inner max-h-80 overflow-y-auto" id="dos-ai-analysis"></div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Modal Footer (Fixed at Bottom) -->
+            <div class="p-5 bg-slate-900/90 border-t border-slate-800 flex items-center justify-between shrink-0">
+                <button onclick="closeDossierModal()" class="px-4 py-2 rounded-xl bg-slate-800 hover:bg-slate-700 text-slate-300 text-xs font-mono transition-colors">
+                    Close Dossier
+                </button>
+                <div class="flex items-center gap-3">
+                    <button onclick="exportCurrentDossierPDF()" class="px-4 py-2 rounded-xl bg-indigo-950 hover:bg-indigo-900 text-indigo-300 border border-indigo-800 text-xs font-mono flex items-center gap-1.5 transition-colors">
+                        <i class="fa-solid fa-file-pdf"></i>
+                        <span>Export Defense Briefing</span>
+                    </button>
+                    
+                    <!-- HIGHLY PROMINENT EXPLOSIVE RETAIN BUTTON -->
+                    <button onclick="openRetainDrawerFromDossier()" class="px-5 py-2.5 rounded-xl bg-gradient-to-r from-amber-500 to-amber-600 hover:from-amber-400 hover:to-amber-500 text-slate-950 text-xs font-mono font-black uppercase tracking-wider glow-amber flex items-center gap-2 transition-all">
+                        <i class="fa-solid fa-graduation-cap text-sm"></i>
+                        <span>CA Override & Teach</span>
+                    </button>
+                    
+                    <button onclick="approveInvoiceInDossier()" class="px-5 py-2.5 rounded-xl bg-emerald-600 hover:bg-emerald-500 text-white text-xs font-mono font-bold uppercase tracking-wider glow-emerald flex items-center gap-2 transition-all">
+                        <i class="fa-solid fa-circle-check"></i>
+                        <span>Approve Disbursement</span>
+                    </button>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <!-- CA Override & Teach Drawer (High Tech Slide-Over) -->
+    <div id="retain-drawer" class="fixed inset-0 z-50 flex items-center justify-end bg-obsidian/85 backdrop-blur-md hidden opacity-0 transition-opacity duration-300">
+        <div class="glass-panel w-full max-w-lg h-full p-6 flex flex-col justify-between border-l border-amber-500/40 shadow-2xl space-y-6 overflow-y-auto">
+            <div class="space-y-6">
+                <div class="flex items-center justify-between border-b border-amber-500/30 pb-4">
+                    <div class="flex items-center space-x-3">
+                        <div class="w-12 h-12 rounded-2xl bg-amber-950 border border-amber-500/60 flex items-center justify-center text-amber-400 glow-amber">
+                            <i class="fa-solid fa-graduation-cap text-xl"></i>
+                        </div>
+                        <div>
+                            <h3 class="text-lg font-bold text-white font-mono">CA Override & Teach Drawer</h3>
+                            <p class="text-xs text-amber-400/80">Write new precedent permanently to Long-Term Memory Vault.</p>
+                        </div>
+                    </div>
+                    <button onclick="closeRetainDrawer()" class="w-8 h-8 rounded-lg bg-slate-800 text-slate-400 hover:text-white flex items-center justify-center">
+                        <i class="fa-solid fa-xmark"></i>
+                    </button>
+                </div>
+
+                <form id="retain-form" class="space-y-4 text-xs">
+                    <input type="hidden" id="retain-invoice-id">
+                    
+                    <div>
+                        <label class="block text-slate-300 font-semibold mb-1">Target Vendor Entity</label>
+                        <input type="text" id="retain-vendor-name" required
+                               class="w-full px-3.5 py-2.5 rounded-xl bg-slate-900 border border-amber-500/30 text-white font-mono focus:border-amber-400 focus:outline-none">
+                    </div>
+
+                    <div>
+                        <label class="block text-slate-300 font-semibold mb-1">Precedent Ruling Title</label>
+                        <input type="text" id="retain-title" required placeholder="e.g. Form 13 Low-TDS Certificate Exemption"
+                               class="w-full px-3.5 py-2.5 rounded-xl bg-slate-900 border border-amber-500/30 text-white font-mono focus:border-amber-400 focus:outline-none">
+                    </div>
+
+                    <div class="grid grid-cols-2 gap-3">
+                        <div>
+                            <label class="block text-slate-300 font-semibold mb-1">Ruling Category</label>
+                            <select id="retain-ruling-type" class="w-full px-3.5 py-2.5 rounded-xl bg-slate-900 border border-amber-500/30 text-white font-mono focus:border-amber-400 focus:outline-none">
+                                <option value="FORM_13_EXEMPTION">Form 13 Exemption</option>
+                                <option value="MSME_CUSTOM_AGREEMENT">MSME Custom Safe Harbor</option>
+                                <option value="REIMBURSEMENT_EXEMPTION">Form 194J Reimbursement</option>
+                                <option value="CA_OVERRIDE_PRECEDENT">General CA Override</option>
+                            </select>
+                        </div>
+                        <div>
+                            <label class="block text-slate-300 font-semibold mb-1">Statutory Code</label>
+                            <input type="text" id="retain-statutory-code" value="SEC_194Q_FORM13"
+                                   class="w-full px-3.5 py-2.5 rounded-xl bg-slate-900 border border-amber-500/30 text-white font-mono focus:border-amber-400 focus:outline-none">
+                        </div>
+                    </div>
+
+                    <div>
+                        <label class="block text-slate-300 font-semibold mb-1">Legal Citation / Order Ref</label>
+                        <input type="text" id="retain-citation" required placeholder="e.g. IT Act Sec 197 AO Order Ref #IT-AO-2026-F13"
+                               class="w-full px-3.5 py-2.5 rounded-xl bg-slate-900 border border-amber-500/30 text-white font-mono focus:border-amber-400 focus:outline-none">
+                    </div>
+
+                    <div>
+                        <label class="block text-slate-300 font-semibold mb-1">Auditor Ruling Summary & Legal Justification</label>
+                        <textarea id="retain-summary" rows="4" required placeholder="Detailed legal rationale why this transaction is pre-cleared for future FY billing..."
+                                  class="w-full px-3.5 py-2.5 rounded-xl bg-slate-900 border border-amber-500/30 text-white font-sans focus:border-amber-400 focus:outline-none"></textarea>
+                    </div>
+
+                    <div>
+                        <label class="block text-slate-300 font-semibold mb-1">Chartered Accountant Signature ID</label>
+                        <input type="text" id="retain-auditor-id" value="CA-SENIOR-AUDITOR-01"
+                               class="w-full px-3.5 py-2.5 rounded-xl bg-slate-900 border border-amber-500/30 text-amber-400 font-mono focus:border-amber-400 focus:outline-none">
+                    </div>
+                </form>
+            </div>
+
+            <div class="border-t border-amber-500/30 pt-4 flex items-center justify-between">
+                <button onclick="closeRetainDrawer()" class="px-4 py-2 rounded-xl bg-slate-800 text-slate-400 text-xs font-mono">
+                    Cancel
+                </button>
+                <button onclick="submitRetainForm()" class="px-6 py-3 rounded-xl bg-gradient-to-r from-amber-400 via-amber-500 to-emerald-400 hover:from-amber-300 hover:to-emerald-300 text-slate-950 font-black text-xs font-mono uppercase tracking-wider glow-amber shadow-2xl flex items-center gap-2 transition-all">
+                    <i class="fa-solid fa-bolt text-sm"></i>
+                    <span>Approve & Retain Precedent</span>
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Live Simulation Modal -->
+    <div id="sim-modal" class="fixed inset-0 z-50 flex items-center justify-center p-4 bg-obsidian/85 backdrop-blur-md hidden opacity-0 transition-opacity duration-300">
+        <div class="glass-panel w-full max-w-2xl rounded-3xl overflow-hidden p-6 space-y-6 border border-slate-700">
+            <div class="flex items-center justify-between border-b border-slate-800 pb-4">
+                <div class="flex items-center space-x-3">
+                    <div class="w-10 h-10 rounded-xl bg-cyan-950 border border-cyan-800 flex items-center justify-center text-cyan-400">
+                        <i class="fa-solid fa-flask text-lg"></i>
+                    </div>
+                    <div>
+                        <h3 class="text-base font-bold text-white font-mono">Live Statutory AI Sandbox Simulator</h3>
+                        <p class="text-xs text-slate-400">Simulate custom invoice screening against RECALL → REFLECT → RETAIN.</p>
+                    </div>
+                </div>
+                <button onclick="closeSimulationModal()" class="w-8 h-8 rounded-lg bg-slate-800 text-slate-400 hover:text-white flex items-center justify-center">
+                    <i class="fa-solid fa-xmark"></i>
+                </button>
+            </div>
+
+            <form id="sim-form" class="space-y-4 text-xs">
+                <div class="grid grid-cols-2 gap-4">
+                    <div>
+                        <label class="block text-slate-300 font-semibold mb-1">Vendor Entity Name</label>
+                        <input type="text" id="sim-vendor" value="AcroTech India Pvt Ltd" required class="w-full px-3 py-2 rounded-xl bg-slate-900 border border-slate-800 text-white font-mono">
+                    </div>
+                    <div>
+                        <label class="block text-slate-300 font-semibold mb-1">Gross Amount (INR)</label>
+                        <input type="number" id="sim-amount" value="5500000" required class="w-full px-3 py-2 rounded-xl bg-slate-900 border border-slate-800 text-cyan-400 font-mono font-bold">
+                    </div>
+                </div>
+
+                <div class="grid grid-cols-2 gap-4">
+                    <div>
+                        <label class="block text-slate-300 font-semibold mb-1">GSTIN Number</label>
+                        <input type="text" id="sim-gstin" value="27AAACA9999Z1" required class="w-full px-3 py-2 rounded-xl bg-slate-900 border border-slate-800 text-white font-mono">
+                    </div>
+                    <div>
+                        <label class="block text-slate-300 font-semibold mb-1">Category</label>
+                        <input type="text" id="sim-category" value="Cloud Hosting & Data Center" required class="w-full px-3 py-2 rounded-xl bg-slate-900 border border-slate-800 text-white font-mono">
+                    </div>
+                </div>
+
+                <div class="grid grid-cols-2 gap-4">
+                    <div>
+                        <label class="block text-slate-300 font-semibold mb-1">Payment Term (Days)</label>
+                        <input type="number" id="sim-terms" value="30" required class="w-full px-3 py-2 rounded-xl bg-slate-900 border border-slate-800 text-white font-mono">
+                    </div>
+                    <div class="flex items-center pt-5">
+                        <label class="flex items-center space-x-2 text-slate-300 cursor-pointer">
+                            <input type="checkbox" id="sim-msme" class="rounded bg-slate-900 border-slate-800 text-cyan-500">
+                            <span>Vendor is MSME Registered</span>
+                        </label>
+                    </div>
+                </div>
+            </form>
+
+            <div class="border-t border-slate-800 pt-4 flex items-center justify-between">
+                <button onclick="closeSimulationModal()" class="px-4 py-2 rounded-xl bg-slate-800 text-slate-400 text-xs font-mono">Cancel</button>
+                <button onclick="runSimulation()" class="px-5 py-2.5 rounded-xl bg-cyan-600 hover:bg-cyan-500 text-white font-bold text-xs font-mono uppercase flex items-center gap-2">
+                    <i class="fa-solid fa-play"></i>
+                    <span>Execute AI Simulation</span>
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Visual Precedent Map Modal -->
+    <div id="prec-map-modal" class="fixed inset-0 z-50 flex items-center justify-center p-4 bg-obsidian/85 backdrop-blur-md hidden opacity-0 transition-opacity duration-300">
+        <div class="glass-panel w-full max-w-4xl rounded-3xl overflow-hidden p-6 space-y-6 border border-slate-700">
+            <div class="flex items-center justify-between border-b border-slate-800 pb-4">
+                <div class="flex items-center space-x-3">
+                    <div class="w-10 h-10 rounded-xl bg-indigo-950 border border-indigo-800 flex items-center justify-center text-indigo-400">
+                        <i class="fa-solid fa-diagram-project text-lg"></i>
+                    </div>
+                    <div>
+                        <h3 class="text-base font-bold text-white font-mono">Visual Statutory Precedent Map</h3>
+                        <p class="text-xs text-slate-400">Long-Term Memory Vector Graph linking CA Rulings, Tax Codes & Vendors.</p>
+                    </div>
+                </div>
+                <button onclick="closePrecedentMapModal()" class="w-8 h-8 rounded-lg bg-slate-800 text-slate-400 hover:text-white flex items-center justify-center">
+                    <i class="fa-solid fa-xmark"></i>
+                </button>
+            </div>
+
+            <div class="h-80 rounded-2xl bg-slate-950 border border-slate-800 p-4 relative overflow-hidden flex items-center justify-center">
+                <div class="absolute inset-0 opacity-20 bg-[radial-gradient(#06b6d4_1px,transparent_1px)] [background-size:16px_16px]"></div>
+                
+                <div class="relative z-10 grid grid-cols-3 gap-8 w-full max-w-2xl text-center text-xs font-mono">
+                    <div class="space-y-4">
+                        <div class="text-slate-400 uppercase text-[10px]">Statutory Codes</div>
+                        <div class="p-3 rounded-xl bg-cyan-950/80 border border-cyan-800 text-cyan-300">SEC 194Q TDS</div>
+                        <div class="p-3 rounded-xl bg-amber-950/80 border border-amber-800 text-amber-300">SEC 43B(h) MSME</div>
+                        <div class="p-3 rounded-xl bg-indigo-950/80 border border-indigo-800 text-indigo-300">SEC 194J REIMB</div>
+                    </div>
+
+                    <div class="space-y-4">
+                        <div class="text-slate-400 uppercase text-[10px]">Precedent Memory Vault</div>
+                        <div class="p-3 rounded-xl bg-emerald-950/80 border border-emerald-800 text-emerald-300 glow-emerald">Form 13 Low-TDS Cert</div>
+                        <div class="p-3 rounded-xl bg-emerald-950/80 border border-emerald-800 text-emerald-300 glow-emerald">60-Day MSME Safe Harbor</div>
+                        <div class="p-3 rounded-xl bg-rose-950/80 border border-rose-800 text-rose-300 glow-rose">Clone Drift Anomaly</div>
+                    </div>
+
+                    <div class="space-y-4">
+                        <div class="text-slate-400 uppercase text-[10px]">Vendor Entities</div>
+                        <div class="p-3 rounded-xl bg-slate-900 border border-slate-800 text-white">Tata Cloud Comms</div>
+                        <div class="p-3 rounded-xl bg-slate-900 border border-slate-800 text-white">Apex Logistics</div>
+                        <div class="p-3 rounded-xl bg-slate-900 border border-slate-800 text-white">Tata Offshore Shell</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="flex justify-end">
+                <button onclick="closePrecedentMapModal()" class="px-5 py-2 rounded-xl bg-slate-800 text-slate-300 text-xs font-mono">Close Map</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Toast Notification -->
+    <div id="toast" class="fixed bottom-6 right-6 z-50 hidden transform transition-all duration-300 translate-y-10 opacity-0">
+        <div class="glass-panel px-5 py-3.5 rounded-2xl border border-emerald-500/50 flex items-center space-x-3 shadow-2xl bg-slate-900/90">
+            <div class="w-8 h-8 rounded-full bg-emerald-950 text-emerald-400 flex items-center justify-center">
+                <i class="fa-solid fa-check"></i>
+            </div>
+            <div>
+                <div class="text-xs font-bold text-white font-mono" id="toast-title">Notification</div>
+                <div class="text-[11px] text-slate-300" id="toast-message">Operation completed successfully.</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Application JavaScript -->
+    <script>
+        let state = {
+            invoices: [],
+            governance: { auto_clear_limit: 5000000.0, strict_msme: true },
+            activeFilter: 'ALL',
+            audioEnabled: true,
+            activeDossier: null,
+            precedentCount: 10
+        };
+
+        let quarterlyChartInst = null;
+        let precisionChartInst = null;
+
+        document.addEventListener('DOMContentLoaded', () => {
+            fetchInvoices();
+            fetchMetrics();
+
+            document.addEventListener('keydown', (e) => {
+                if ((e.ctrlKey || e.metaKey) && e.key === 'k') {
+                    e.preventDefault();
+                    document.getElementById('ledger-search')?.focus();
+                }
+            });
+        });
+
+        function playAudioFx(freq = 440, type = 'sine') {
+            if (!state.audioEnabled) return;
+            try {
+                const ctx = new (window.AudioContext || window.webkitAudioContext)();
+                const osc = ctx.createOscillator();
+                const gain = ctx.createGain();
+                osc.type = type;
+                osc.frequency.setValueAtTime(freq, ctx.currentTime);
+                gain.gain.setValueAtTime(0.05, ctx.currentTime);
+                gain.gain.exponentialRampToValueAtTime(0.001, ctx.currentTime + 0.3);
+                osc.connect(gain);
+                gain.connect(ctx.destination);
+                osc.start();
+                osc.stop(ctx.currentTime + 0.3);
+            } catch (e) {}
+        }
+
+        function toggleAudio() {
+            state.audioEnabled = !state.audioEnabled;
+            document.getElementById('audio-text').innerText = state.audioEnabled ? "Audio FX: ON" : "Audio FX: OFF";
+            document.getElementById('audio-icon').className = state.audioEnabled ? "fa-solid fa-volume-high" : "fa-solid fa-volume-xmark";
+        }
+
+        async function fetchInvoices() {
+            try {
+                const res = await fetch('/api/invoices');
+                const data = await res.json();
+                if (data.success) {
+                    state.invoices = data.invoices;
+                    state.governance = data.governance;
+                    renderLedger();
+                    updateGovernanceUI();
+                }
+            } catch (err) { console.error("Fetch error:", err); }
+        }
+
+        async function fetchMetrics() {
+            try {
+                const res = await fetch('/api/metrics');
+                const data = await res.json();
+                document.getElementById('metric-false-alarms').innerText = data.false_alarms_prevented;
+                document.getElementById('metric-active-shields').innerText = data.active_shields;
+                document.getElementById('metric-ledger-val').innerText = data.total_ledger_value_fmt.split(' (')[0];
+                document.getElementById('metric-tax-savings').innerText = `${data.tax_savings_fmt} Tax Savings Prevented`;
+                
+                state.precedentCount = data.active_precedents_count;
+                document.getElementById('metric-active-precedents').innerText = `${state.precedentCount} Precedents`;
+                
+                renderCharts(data);
+            } catch (err) { console.error("Metrics error:", err); }
+        }
+
+        function renderCharts(metrics) {
+            const qCtx = document.getElementById('quarterlyChart')?.getContext('2d');
+            const pCtx = document.getElementById('precisionChart')?.getContext('2d');
+
+            if (qCtx && !quarterlyChartInst) {
+                quarterlyChartInst = new Chart(qCtx, {
+                    type: 'bar',
+                    data: {
+                        labels: ['Q1 2026', 'Q2 2026', 'Q3 2026'],
+                        datasets: [{
+                            label: 'Ledger Exposure (INR)',
+                            data: [18700000, 68400000, 161400000],
+                            backgroundColor: ['rgba(6, 182, 212, 0.7)', 'rgba(139, 92, 246, 0.7)', 'rgba(16, 185, 129, 0.7)'],
+                            borderRadius: 8
+                        }]
+                    },
+                    options: {
+                        responsive: true,
+                        maintainAspectRatio: false,
+                        plugins: { legend: { display: false } },
+                        scales: {
+                            x: { grid: { display: false }, ticks: { color: '#94a3b8', font: { family: 'JetBrains Mono' } } },
+                            y: { grid: { color: 'rgba(255,255,255,0.05)' }, ticks: { color: '#94a3b8', font: { family: 'JetBrains Mono' } } }
+                        }
+                    }
+                });
+            }
+
+            if (pCtx && !precisionChartInst) {
+                precisionChartInst = new Chart(pCtx, {
+                    type: 'doughnut',
+                    data: {
+                        labels: ['Unscreened', 'Auto-Cleared', 'Critical Alerts', 'Escalate to CA'],
+                        datasets: [{
+                            data: [metrics.pending_count, metrics.cleared_count, metrics.alert_count, metrics.escalate_count],
+                            backgroundColor: ['#06b6d4', '#10b981', '#f43f5e', '#f59e0b'],
+                            borderWidth: 0
+                        }]
+                    },
+                    options: {
+                        responsive: true,
+                        maintainAspectRatio: false,
+                        plugins: { legend: { position: 'bottom', labels: { color: '#cbd5e1', font: { family: 'JetBrains Mono', size: 10 } } } },
+                        cutout: '70%'
+                    }
+                });
+            }
+        }
+
+        function renderLedger() {
+            const tbody = document.getElementById('ledger-table-body');
+            tbody.innerHTML = '';
+
+            const searchTerm = (document.getElementById('ledger-search')?.value || '').toLowerCase();
+
+            const filtered = state.invoices.filter(inv => {
+                const matchesFilter = state.activeFilter === 'ALL' || inv.status === state.activeFilter;
+                const matchesSearch = inv.vendor_name.toLowerCase().includes(searchTerm) ||
+                                      inv.gstin.toLowerCase().includes(searchTerm) ||
+                                      inv.id.toLowerCase().includes(searchTerm);
+                return matchesFilter && matchesSearch;
+            });
+
+            document.getElementById('invoice-count-badge').innerText = `${filtered.length} of ${state.invoices.length} Invoices`;
+
+            filtered.forEach(inv => {
+                const tr = document.createElement('tr');
+                tr.id = `inv-row-${inv.id}`;
+                tr.className = 'hover:bg-slate-900/60 transition-all border-b border-slate-800/40';
+
+                let statusBadge = '';
+                if (inv.status === 'PENDING_SCREENING') {
+                    statusBadge = `<span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-semibold bg-cyan-950/80 text-cyan-300 border border-cyan-800"><span class="w-1.5 h-1.5 rounded-full bg-cyan-400 pulse-indicator"></span><span>UNSCREENED</span></span>`;
+                } else if (inv.status === 'AUTO_CLEARED_BY_PRECEDENT') {
+                    statusBadge = `<span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-semibold bg-emerald-950 text-emerald-400 border border-emerald-800"><span class="w-1.5 h-1.5 rounded-full bg-emerald-400 pulse-indicator"></span><span>AUTO CLEARED</span></span>`;
+                } else if (inv.status === 'CRITICAL_TAX_ALERT') {
+                    statusBadge = `<span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-semibold bg-rose-950 text-rose-400 border border-rose-800"><span class="w-1.5 h-1.5 rounded-full bg-rose-400 pulse-indicator"></span><span>CRITICAL ALERT</span></span>`;
+                } else {
+                    statusBadge = `<span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-semibold bg-amber-950 text-amber-400 border border-amber-800"><span class="w-1.5 h-1.5 rounded-full bg-amber-400"></span><span>ESCALATE TO CA</span></span>`;
+                }
+
+                const isGstinValid = !inv.gstin.includes('INVALID') && !inv.gstin.includes('FAKE');
+                const gstinBadge = isGstinValid
+                    ? `<span class="text-xs font-mono text-emerald-400 bg-slate-900 px-2 py-0.5 rounded border border-slate-800">${inv.gstin} <i class="fa-solid fa-check text-[10px] ml-1"></i></span>`
+                    : `<span class="text-xs font-mono text-rose-400 bg-rose-950/40 px-2 py-0.5 rounded border border-rose-800">${inv.gstin} <i class="fa-solid fa-triangle-exclamation text-[10px] ml-1"></i></span>`;
+
+                tr.innerHTML = `
+                    <td class="py-4 px-6 font-mono text-xs">
+                        <div class="font-bold text-white">${inv.id}</div>
+                        <div class="text-slate-500 text-[11px]">${inv.date} (${inv.quarter})</div>
+                    </td>
+                    <td class="py-4 px-6">
+                        <div class="font-bold text-white flex items-center gap-2">
+                            <span>${inv.vendor_name}</span>
+                            ${inv.is_msme ? '<span class="text-[10px] px-1.5 py-0.2 rounded bg-indigo-950 text-indigo-300 border border-indigo-800 font-mono">MSME</span>' : ''}
+                        </div>
+                        <div class="text-xs text-slate-400 mt-0.5">${inv.category}</div>
+                    </td>
+                    <td class="py-4 px-6">${gstinBadge}</td>
+                    <td class="py-4 px-6 text-right font-mono font-bold text-white">
+                        ₹${inv.amount.toLocaleString('en-IN', {minimumFractionDigits: 2})}
+                    </td>
+                    <td class="py-4 px-6">
+                        ${statusBadge}
+                        <div class="text-[11px] text-slate-400 mt-1 font-mono">${inv.precedent_type || 'Standard Check'}</div>
+                    </td>
+                    <td class="py-4 px-6 text-center flex items-center justify-center gap-2">
+                        <button onclick="screenInvoice('${inv.id}')" class="px-3.5 py-1.5 rounded-xl bg-cyan-950 hover:bg-cyan-900 text-cyan-300 border border-cyan-800/80 text-xs font-mono font-semibold transition-all flex items-center gap-1.5 shadow-md">
+                            <i class="fa-solid fa-wand-magic-sparkles"></i><span>Screen</span>
+                        </button>
+                        <a href="/api/export-report/${inv.id}" target="_blank" class="px-2.5 py-1.5 rounded-xl bg-slate-900 hover:bg-slate-800 text-slate-400 hover:text-white border border-slate-800 text-xs font-mono transition-all" title="Export PDF Defense Briefing">
+                            <i class="fa-solid fa-file-pdf"></i>
+                        </a>
+                    </td>
+                `;
+
+                tbody.appendChild(tr);
+            });
+        }
+
+        async function screenInvoice(invoiceId) {
+            playAudioFx(600, 'triangle');
+            openDossierModal();
+            document.getElementById('dossier-loader').classList.remove('hidden');
+            document.getElementById('dossier-body').classList.add('hidden');
+
+            try {
+                const res = await fetch(`/api/screen/${invoiceId}`, { method: 'POST' });
+                const data = await res.json();
+                if (data.success) {
+                    state.activeDossier = data;
+                    renderDossierPayload(data);
+                    fetchMetrics();
+                    fetchInvoices();
+                }
+            } catch (err) { console.error("Screening error:", err); }
+        }
+
+        function renderDossierPayload(data) {
+            const inv = data.invoice || {};
+            const rules = data.rule_results || {};
+            const precedents = data.recalled_precedents || [];
+
+            const sec194qApplied = rules.sec_194q_applied ?? ((inv.amount || 0) > 5000000.0);
+            const sec43bhBreached = rules.sec_43bh_breached ?? (Boolean(inv.is_msme) && ((inv.payment_terms_days || 30) > 45));
+            const gstinValid = rules.gstin_valid ?? (Boolean(inv.gstin) && !inv.gstin.includes('INVALID') && !inv.gstin.includes('FAKE') && inv.gstin.length === 15);
+
+            document.getElementById('dos-vendor').innerText = inv.vendor_name || 'N/A';
+            document.getElementById('dos-amount').innerText = `₹${(inv.amount || 0).toLocaleString('en-IN', {minimumFractionDigits: 2})}`;
+
+            let vBadge = '';
+            const verdict = rules.verdict || inv.status || 'PENDING_SCREENING';
+            if (verdict === 'AUTO_CLEARED_BY_PRECEDENT') {
+                vBadge = `<span class="px-3 py-1 rounded-full text-xs font-bold bg-emerald-950 text-emerald-400 border border-emerald-800">AUTO CLEARED BY PRECEDENT</span>`;
+            } else if (verdict === 'CRITICAL_TAX_ALERT') {
+                vBadge = `<span class="px-3 py-1 rounded-full text-xs font-bold bg-rose-950 text-rose-400 border border-rose-800">CRITICAL TAX ALERT</span>`;
+            } else {
+                vBadge = `<span class="px-3 py-1 rounded-full text-xs font-bold bg-amber-950 text-amber-400 border border-amber-800">ESCALATE TO CA AUDITOR</span>`;
+            }
+            document.getElementById('dos-verdict-badge').innerHTML = vBadge;
+
+            const rulesMatrix = document.getElementById('dos-rules-matrix');
+            rulesMatrix.innerHTML = `
+                <div class="p-3 rounded-xl bg-slate-900 border border-slate-800 space-y-1">
+                    <div class="text-[11px] text-slate-400 font-mono">Sec 194Q TDS Rule</div>
+                    <div class="font-bold text-xs ${sec194qApplied ? 'text-amber-400' : 'text-emerald-400'}">
+                        ${sec194qApplied ? 'Exceeds ₹50L Threshold' : 'Below Threshold (< ₹50L)'}
+                    </div>
+                </div>
+                <div class="p-3 rounded-xl bg-slate-900 border border-slate-800 space-y-1">
+                    <div class="text-[11px] text-slate-400 font-mono">Sec 43B(h) MSME 45-Day</div>
+                    <div class="font-bold text-xs ${sec43bhBreached ? 'text-rose-400' : 'text-emerald-400'}">
+                        ${sec43bhBreached ? `Breached (${inv.payment_terms_days || 30} Days)` : 'Compliant / Exempt'}
+                    </div>
+                </div>
+                <div class="p-3 rounded-xl bg-slate-900 border border-slate-800 space-y-1">
+                    <div class="text-[11px] text-slate-400 font-mono">GSTIN Drift Sensor</div>
+                    <div class="font-bold text-xs ${gstinValid ? 'text-emerald-400' : 'text-rose-400'}">
+                        ${gstinValid ? '15-Digit Valid Checksum' : 'INVALID / CLONE SPOOF'}
+                    </div>
+                </div>
+            `;
+
+            const precCard = document.getElementById('dos-precedents-card');
+            if (precedents && precedents.length > 0) {
+                precCard.innerHTML = precedents.map(p => `
+                    <div class="border-b border-emerald-800/40 pb-2 mb-2 last:border-0 last:pb-0 last:mb-0">
+                        <div class="font-bold text-emerald-300 flex items-center justify-between">
+                            <span>${p.title}</span>
+                            <span class="text-[10px] font-mono px-2 py-0.5 rounded bg-emerald-950 text-emerald-400">${p.ruling_type}</span>
+                        </div>
+                        <p class="text-slate-300 mt-1">${p.summary}</p>
+                        <div class="text-[11px] text-emerald-400/80 font-mono mt-1">Citation: ${p.legal_citation}</div>
+                    </div>
+                `).join('');
+            } else {
+                precCard.innerHTML = `<span class="text-slate-400 font-mono">No matching precedent found in memory bank for this transaction.</span>`;
+            }
+
+            document.getElementById('dos-ai-analysis').innerText = data.ai_analysis;
+            document.getElementById('dos-llm-model').innerText = `Engine: ${data.llm_model || 'Statutory Neural Matrix v3.0'}`;
+
+            document.getElementById('dossier-loader').classList.add('hidden');
+            document.getElementById('dossier-body').classList.remove('hidden');
+        }
+
+        async function runAutonomousBatchScan() {
+            playAudioFx(800, 'sine');
+            const btn = document.getElementById('batch-scan-btn');
+            btn.innerHTML = `<i class="fa-solid fa-spinner animate-spin"></i> Running AI Batch Scan...`;
+
+            try {
+                const res = await fetch('/api/batch-screen', { method: 'POST' });
+                const data = await res.json();
+                if (data.success) {
+                    showToast("Autonomous Batch Scan Complete!", `Successfully evaluated ${data.total_screened} invoices against Precedent Memory Vault.`);
+                    fetchInvoices();
+                    fetchMetrics();
+                }
+            } catch (err) { console.error("Batch scan error:", err); }
+            btn.innerHTML = `<i class="fa-solid fa-radar text-sm"></i> <span>Run Autonomous Batch Scan</span>`;
+        }
+
+        function openSimulationModal() {
+            const modal = document.getElementById('sim-modal');
+            modal.classList.remove('hidden');
+            setTimeout(() => modal.classList.remove('opacity-0'), 10);
+        }
+        function closeSimulationModal() {
+            const modal = document.getElementById('sim-modal');
+            modal.classList.add('opacity-0');
+            setTimeout(() => modal.classList.add('hidden'), 300);
+        }
+
+        async function runSimulation() {
+            const payload = {
+                vendor_name: document.getElementById('sim-vendor').value,
+                amount: parseFloat(document.getElementById('sim-amount').value),
+                gstin: document.getElementById('sim-gstin').value,
+                category: document.getElementById('sim-category').value,
+                payment_terms_days: parseInt(document.getElementById('sim-terms').value),
+                is_msme: document.getElementById('sim-msme').checked
+            };
+
+            try {
+                const res = await fetch('/api/simulate-invoice', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(payload)
+                });
+                const data = await res.json();
+                if (data.success) {
+                    closeSimulationModal();
+                    openDossierModal();
+                    renderDossierPayload({
+                        invoice: data.simulated_invoice,
+                        rule_results: data.rule_results,
+                        recalled_precedents: data.recalled_precedents,
+                        ai_analysis: data.ai_analysis,
+                        llm_model: data.llm_model
+                    });
+                }
+            } catch (e) { console.error("Simulation error:", e); }
+        }
+
+        function openPrecedentMapModal() {
+            const modal = document.getElementById('prec-map-modal');
+            modal.classList.remove('hidden');
+            setTimeout(() => modal.classList.remove('opacity-0'), 10);
+        }
+        function closePrecedentMapModal() {
+            const modal = document.getElementById('prec-map-modal');
+            modal.classList.add('opacity-0');
+            setTimeout(() => modal.classList.add('hidden'), 300);
+        }
+
+        function openDossierModal() {
+            const modal = document.getElementById('dossier-modal');
+            modal.classList.remove('hidden');
+            setTimeout(() => modal.classList.remove('opacity-0'), 10);
+        }
+        function closeDossierModal() {
+            const modal = document.getElementById('dossier-modal');
+            modal.classList.add('opacity-0');
+            setTimeout(() => modal.classList.add('hidden'), 300);
+        }
+
+        function openRetainDrawerFromDossier() {
+            closeDossierModal();
+            const inv = state.activeDossier ? state.activeDossier.invoice : null;
+            if (inv) {
+                document.getElementById('retain-invoice-id').value = inv.id;
+                document.getElementById('retain-vendor-name').value = inv.vendor_name;
+                document.getElementById('retain-title').value = `CA Precedent Exemption for ${inv.vendor_name}`;
+                document.getElementById('retain-summary').value = `Auditor verified statutory compliance and issued lower TDS / safe harbor precedent authorization.`;
+            }
+            openRetainDrawer();
+        }
+
+        function openRetainDrawer() {
+            const drawer = document.getElementById('retain-drawer');
+            drawer.classList.remove('hidden');
+            setTimeout(() => drawer.classList.remove('opacity-0'), 10);
+        }
+        function closeRetainDrawer() {
+            const drawer = document.getElementById('retain-drawer');
+            drawer.classList.add('opacity-0');
+            setTimeout(() => drawer.classList.add('hidden'), 300);
+        }
+
+        // EXPLOSIVE VISUAL RETAIN LOOP IMPLEMENTATION
+        async function submitRetainForm() {
+            playAudioFx(880, 'sine');
+            const payload = {
+                invoice_id: document.getElementById('retain-invoice-id').value || null,
+                vendor_name: document.getElementById('retain-vendor-name').value,
+                title: document.getElementById('retain-title').value,
+                ruling_type: document.getElementById('retain-ruling-type').value,
+                statutory_code: document.getElementById('retain-statutory-code').value,
+                legal_citation: document.getElementById('retain-citation').value,
+                summary: document.getElementById('retain-summary').value,
+                auditor_id: document.getElementById('retain-auditor-id').value
+            };
+
+            try {
+                const res = await fetch('/api/retain', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(payload)
+                });
+                const data = await res.json();
+                if (data.success) {
+                    closeRetainDrawer();
+
+                    // 1. Trigger Screen Flash Explosion Effect
+                    const flash = document.getElementById('flash-overlay-el');
+                    flash.classList.remove('hidden');
+                    flash.classList.add('flash-explosion');
+                    setTimeout(() => {
+                        flash.classList.add('hidden');
+                        flash.classList.remove('flash-explosion');
+                    }, 600);
+
+                    // 2. Animate Active Precedents Counter Increment Live
+                    state.precedentCount++;
+                    const precEl = document.getElementById('metric-active-precedents');
+                    precEl.innerText = `${state.precedentCount} Precedents`;
+                    precEl.classList.add('counter-bump');
+                    setTimeout(() => precEl.classList.remove('counter-bump'), 800);
+
+                    // 3. Show Toast & Refresh Table
+                    showToast("Precedent Retained Live!", `New CA ruling permanently retained to Precedent Memory Vault. Counter updated to ${state.precedentCount}!`);
+                    fetchInvoices();
+                    fetchMetrics();
+                }
+            } catch (err) { console.error("Retain error:", err); }
+        }
+
+        function approveInvoiceInDossier() {
+            if (state.activeDossier) {
+                playAudioFx(750, 'sine');
+                const inv = state.activeDossier.invoice;
+                inv.status = 'AUTO_CLEARED_BY_PRECEDENT';
+                closeDossierModal();
+                showToast("Disbursement Approved", `Payment cleared for ${inv.vendor_name}.`);
+                fetchInvoices();
+                fetchMetrics();
+            }
+        }
+
+        function exportCurrentDossierPDF() {
+            if (state.activeDossier && state.activeDossier.invoice) {
+                window.open(`/api/export-report/${state.activeDossier.invoice.id}`, '_blank');
+            }
+        }
+
+        function updateSliderDisplay(val) {
+            const num = parseFloat(val);
+            const lakhs = (num / 100000).toFixed(0);
+            document.getElementById('slider-val-display').innerText = `₹${num.toLocaleString('en-IN')} (${lakhs}L)`;
+        }
+
+        function updateGovernanceUI() {
+            document.getElementById('governance-slider').value = state.governance.auto_clear_limit;
+            updateSliderDisplay(state.governance.auto_clear_limit);
+            document.getElementById('msme-toggle').checked = state.governance.strict_msme;
+        }
+
+        async function applyGovernance() {
+            const limit = parseFloat(document.getElementById('governance-slider').value);
+            const strict = document.getElementById('msme-toggle').checked;
+
+            try {
+                const res = await fetch('/api/governance', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ auto_clear_limit: limit, strict_msme: strict })
+                });
+                const data = await res.json();
+                if (data.success) {
+                    state.governance = data.governance;
+                    state.invoices = data.invoices;
+                    renderLedger();
+                    fetchMetrics();
+                    showToast("Governance Controls Applied", `Auto-clear threshold updated to ₹${(limit/100000).toFixed(0)}L.`);
+                }
+            } catch (err) { console.error("Governance error:", err); }
+        }
+
+        function filterInvoices(filterType) {
+            state.activeFilter = filterType;
+            ['ALL', 'PENDING_SCREENING', 'AUTO_CLEARED_BY_PRECEDENT', 'ESCALATE_TO_CA', 'CRITICAL_TAX_ALERT'].forEach(f => {
+                const btn = document.getElementById(`filter-btn-${f}`);
+                if (btn) {
+                    btn.className = (f === filterType)
+                        ? 'px-3 py-1.5 rounded-lg text-cyan-400 bg-slate-800 font-semibold transition-all'
+                        : 'px-3 py-1.5 rounded-lg text-slate-400 hover:text-white transition-all';
+                }
+            });
+            renderLedger();
+        }
+
+        function handleSearch() { renderLedger(); }
+
+        function showToast(title, message) {
+            const toast = document.getElementById('toast');
+            document.getElementById('toast-title').innerText = title;
+            document.getElementById('toast-message').innerText = message;
+
+            toast.classList.remove('hidden');
+            setTimeout(() => toast.classList.remove('translate-y-10', 'opacity-0'), 10);
+            setTimeout(() => {
+                toast.classList.add('translate-y-10', 'opacity-0');
+                setTimeout(() => toast.classList.add('hidden'), 300);
+            }, 4000);
+        }
+    </script>
+</body>
+</html>
